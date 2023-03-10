@@ -7,7 +7,6 @@ const app = express()
 const url = "https://api.buurtcampus-oost.fdnd.nl/api/v1/stekjes"
 const data = await fetch(url).then(response => response.json())
 
-console.log(data)
 
 
 // Stel ejs in als template engine en geef de 'views' map door
@@ -26,10 +25,8 @@ app.get('/', function (req, res) {
 })
 
 // Stel het poortnummer in waar express op gaat luisteren
-app.set('port', process.env.PORT || 8000)
+app.set('port', 8000)
 
 // Start express op, haal het ingestelde poortnummer op
 app.listen(app.get('port'), function () {
-  // Toon een bericht in de console en geef het poortnummer door
-  console.log(`Application started on http://localhost:${app.get('port')}`)
 })
