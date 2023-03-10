@@ -1,0 +1,30 @@
+<%- include('./particals/head.ejs') %>
+
+<div class="wrapper">
+
+    <h1>Stekjesbieb</h1>
+
+    <div class="filters">
+        <div class="filters-btn">
+            <i class="fa-solid fa-filter"></i>
+            <p>Filters</p>
+        </div>
+    </div>
+
+    <div class="stekjes">
+        <div class="stekje">
+            <img src="">
+            <h2><%= stekjes.naam %></h2>
+            <a href="">Meer informatie</a>
+        </div>
+
+        <div class="stekje">
+                <img src="/public/assets/Placeholder.jpg" alt="Placeholder avatar" />
+            <h2><%= stekjes.naam %></h2>
+            <a href="">Meer informatie</a>
+        </div>
+    </div>
+
+</div>
+
+<%- include('./particals/foot.ejs') %>
