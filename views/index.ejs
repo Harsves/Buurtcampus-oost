@@ -9,20 +9,24 @@
             <i class="fa-solid fa-filter"></i>
             <p>Filters</p>
         </div>
+
+        <div class="filter-menu">
+            <ul>
+                
+            </ul>
+        </div>
     </div>
 
     <div class="stekjes">
-        <div class="stekje">
-            <img src="">
-            <h2><%= stekjes.naam %></h2>
-            <a href="">Meer informatie</a>
-        </div>
+        
+            <% stekjes.forEach(stekje => { %>
+                <div class="stekje">
+                <img src="assets/Placeholder.jpg" alt="<%= stekje.naam %>" />
+                <h2><%= stekje.naam %></h2>
+                <a href="">Meer informatie</a>
+            </div>
+            <% }) %>
 
-        <div class="stekje">
-            <img src="/public/assets/Placeholder.jpg" alt="Placeholder avatar" />
-            <h2><%= stekjes.naam %></h2>
-            <a href="">Meer informatie</a>
-        </div>
     </div>
 
 </div>
