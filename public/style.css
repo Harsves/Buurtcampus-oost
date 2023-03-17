@@ -74,18 +74,16 @@ a {
 
 .nav-menu {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    gap: 60px;
+    gap: 20px;
     position: fixed;
     left: -100%;
     top: 70px;
-    gap: 0;
     flex-direction: column;
     width: 100%;
     transition: 0.3s;
     background-color: var(--white);
-    padding-top: 50px;
+    height: 100%;
 }
 
 .nav-menu.active {
