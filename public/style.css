@@ -153,6 +153,10 @@ main p {
     font-size: var(--p);
 }
 
+body {
+    height: 100%;
+}
+
 /* Filters */
 
 /* .filters {
@@ -286,7 +290,7 @@ footer {
     box-shadow:0 0 12px 1px rgb(0 0 0 / 4%);
     width: 100%;
     padding: 10px;
-    display: flex;
+    display: none;
     justify-content: space-between;
     align-items: center;
     margin-top: 40px;
