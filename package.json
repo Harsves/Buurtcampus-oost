@@ -2,7 +2,7 @@
   "name": "buurtcampus-oost",
   "version": "1.0.0",
   "description": "Buurtcampus oost",
-  "main": "index.js",
+  "main": "server.js",
   "type": "module",
   "directories": {
     "doc": "docs"
