@@ -1,0 +1,47 @@
+<%- include('./particals/head.ejs') %>
+
+<section class="detail">
+    <img src="/assets/Placeholder.jpg"/>
+    <section>
+        <h1><%= stekje.naam %></h1>
+        
+        <h2>Land van herkomst</h2>
+        <% if (stekje.landvanherkomst) { %>
+            <p> <%= stekje.landvanherkomst %> </p>
+            <% }else{ %>
+            <p>Onbekent</p>
+            <% } %>
+
+        <h2>Giftig</h2>
+        <% if (stekje.giftig) { %>
+            <p> <%= stekje.giftig %> </p>
+            <% }else{ %>
+            <p>Onbekent</p>
+            <% } %>
+
+        <h2>Verpotten</h2>
+        <% if (stekje.verpotten) { %>
+            <p> <%= stekje.verpotten %> </p>
+            <% }else{ %>
+            <p>Onbekent</p>
+            <% } %>
+
+        <h2>Voeding</h2>
+        <% if (stekje.voeding) { %>
+            <p> <%= stekje.voeding %> </p>
+            <% }else{ %>
+            <p>Onbekent</p>
+            <% } %>
+
+            <a href="/">Reserveer stekje</a>
+    </section>
+
+    <section>
+        <h3>Bekijk ook deze stekjes</h3>
+        
+    </section>
+</section>
+
+
+
+<%- include('./particals/foot.ejs') %>

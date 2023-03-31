@@ -1,0 +1,31 @@
+<%- include('./particals/head.ejs') %>
+
+<h1>Voeg je stekje toe</h1>
+<p>Voeg hier alvast je stekje toe. Je inzending word gecontroleerd en je krijg een bevestiging in de mail als hij is goedgekeurd.</p>
+
+<form action="/" method="post">
+    <% if(locals.error !== undefined){ %>
+        <p class="message"><%= error %></p>
+    <% } %>
+            <label for="name-stekje">Naam stekje</label>
+            <input required type="text" name="naam" id="name-stekje" placeholder="..."/>
+
+            <label for="origin">Afkomst</label>
+            <input type="text" name="landvanherkomst" id="origin" placeholder="..."/>
+
+            <label for="poisonous">Giftig</label>
+            <input type="text" name="giftig" id="poisonous" placeholder="..."/>
+
+            <label for="repot">Verpotten</label>
+            <input type="text" name="verpotten" id="repot" placeholder="..."/>
+
+            <label for="nutrition">Voeding</label>
+            <input type="text" name="voeding" id="nutrition" placeholder="..."/>
+           
+
+            <input type="submit" value="Toevoegen"/> 
+</form>
+
+
+
+<%- include('./particals/foot.ejs') %>
