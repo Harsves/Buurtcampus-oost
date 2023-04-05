@@ -7,7 +7,7 @@ dotenv.config();
 
 const formUpload = express.Router();
 
-// Shows form to upload new plant
+// Laat formulier zien om stekje toe te voegen
 // OVERZICHTSPAGINA ROUTE
 formUpload.get("/", (request, response) => {
   const baseUrl = `${process.env.API_URL}/stekjes`;
@@ -18,7 +18,7 @@ formUpload.get("/", (request, response) => {
 });
 
 
-// Takes care of sending the form
+// Form afhandeling
 formUpload.post("/", (request, response) => {
   console.log(request.body);
   const baseUrl = `${process.env.API_URL}/stekjes`;

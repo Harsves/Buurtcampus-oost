@@ -24,7 +24,7 @@ app.get('/', function (req, res) {
 })
 
 // Maak een route voor het form
-app.get('/form', function (req, res) {
+app.get('/stekje-toevoegen', function (req, res) {
   res.render('form')
 })
 
