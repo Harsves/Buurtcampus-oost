@@ -36,6 +36,7 @@ app.get('/stekje', function (req, res) {
   })
 })
 
+/// Maak een route voor de stekjesbieb
 app.get('/stekjesbieb', function (req, res) {
   const url = `${process.env.API_URL}/stekjes`
   fetchJson(url).then((data) => {
@@ -51,7 +52,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/", postServer);
 
 // Stel het poortnummer in waar express op gaat luisteren
-app.set('port', 8000)
+app.set('port', 9000)
 
 // Start express op, haal het ingestelde poortnummer op
 app.listen(app.get('port'), function () {
