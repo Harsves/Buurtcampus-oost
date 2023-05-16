@@ -16,6 +16,7 @@ const ioServer = new Server(http)
 // Serveer client-side bestanden
 app.use(express.static(path.resolve('public')))
 
+// Start de socket.io server op
 ioServer.on('connection', (client) => {
   // Log de connectie naar console
   console.log(`user ${client.id} connected`)
