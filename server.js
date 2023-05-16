@@ -1,12 +1,16 @@
 // Importeer express uit de node_modules map
+import * as path from 'path'
 import * as dotenv from "dotenv";
 import express from 'express';
+import { Server } from 'socket.io'
+import { createServer } from 'http'
 import postServer from "./routes/post-server.js";
 
 dotenv.config();
 
-// Maak een nieuwe express app aan
 const app = express()
+const http = createServer(app)
+const io = new Server(http)
 
 // Stel ejs in als template engine en geef de 'views' map door
 app.set('view engine', 'ejs')
@@ -44,6 +48,11 @@ app.get('/stekjesbieb', function (req, res) {
   })
 })
 
+// Maak een route voor chatbox
+app.get("/chatbox", function (req, res) {
+  res.render("chatbox");
+});
+
 // na submit Stel afhandeling van formulieren in
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -56,6 +65,34 @@ app.set('port', 9000)
 
 // Start express op, haal het ingestelde poortnummer op
 app.listen(app.get('port'), function () {
+})
+
+
+// Serveer client-side bestanden
+app.use(express.static(path.resolve('public')))
+
+io.on('connection', (socket) => {
+  // Log de connectie naar console
+  console.log('a user connected')
+  // Stuur de historie door, let op: luister op socket, emit op io!
+  io.emit('history', history)
+
+  // Luister naar een message van een gebruiker
+  socket.on('message', (message) => {
+    // Check de maximum lengte van de historie
+    while (history.length > historySize) {
+      history.shift()
+    }
+    // Voeg het toe aan de historie
+    history.push(message)
+    // Verstuur het bericht naar alle clients
+    io.emit('message', message)
+  })
+
+  // Luister naar een disconnect van een gebruiker
+  socket.on('disconnect', () => {
+    console.log('user disconnected')
+  })
 })
 
 /**
