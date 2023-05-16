@@ -1,17 +1,41 @@
 // Importeer express uit de node_modules map
 import * as path from 'path'
 import * as dotenv from "dotenv";
-import express from 'express';
+
 import { Server } from 'socket.io'
 import { createServer } from 'http'
-import postServer from "./routes/post-server.js";
+import express from 'express'
+import postServer from "./routes/post-server.js"
 
 dotenv.config();
 
 const app = express()
 const http = createServer(app)
-const io = new Server(http)
+const ioServer = new Server(http)
 
+// Serveer client-side bestanden
+app.use(express.static(path.resolve('public')))
+
+ioServer.on('connection', (client) => {
+  // Log de connectie naar console
+  console.log(`user ${client.id} connected`)
+
+  // Luister naar een message van een gebruiker
+  client.on('message', (message) => {
+    // Log het ontvangen bericht
+    console.log(`user ${client.id} sent message: ${message}`)
+
+    // Verstuur het bericht naar alle clients
+    ioServer.emit('message', message)
+  })
+
+  // Luister naar een disconnect van een gebruiker
+  client.on('disconnect', () => {
+    // Log de disconnect
+    console.log(`user ${client.id} disconnected`)
+  })
+})
+ 
 // Stel ejs in als template engine en geef de 'views' map door
 app.set('view engine', 'ejs')
 app.set('views', './views')
@@ -61,39 +85,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/", postServer);
 
 // Stel het poortnummer in waar express op gaat luisteren
-app.set('port', 9000)
+app.set("port", 9000);
 
 // Start express op, haal het ingestelde poortnummer op
-app.listen(app.get('port'), function () {
-})
-
-
-// Serveer client-side bestanden
-app.use(express.static(path.resolve('public')))
-
-io.on('connection', (socket) => {
-  // Log de connectie naar console
-  console.log('a user connected')
-  // Stuur de historie door, let op: luister op socket, emit op io!
-  io.emit('history', history)
-
-  // Luister naar een message van een gebruiker
-  socket.on('message', (message) => {
-    // Check de maximum lengte van de historie
-    while (history.length > historySize) {
-      history.shift()
-    }
-    // Voeg het toe aan de historie
-    history.push(message)
-    // Verstuur het bericht naar alle clients
-    io.emit('message', message)
-  })
-
-  // Luister naar een disconnect van een gebruiker
-  socket.on('disconnect', () => {
-    console.log('user disconnected')
-  })
-})
+app.listen(app.get("port"), function () {
+  console.log(`Application started on http://localhost:${app.get("port")}`);
+});
 
 /**
  * Wraps the fetch api and returns the response body parsed through json
