@@ -86,10 +86,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/", postServer);
 
 // Stel het poortnummer in waar express op gaat luisteren
-app.set("port", 9000);
+app.set("port", process.env.PORT || 9000);
 
 // Start express op, haal het ingestelde poortnummer op
-app.listen(app.get("port"), function () {
+http.listen(app.get("port"), function () {
   console.log(`Application started on http://localhost:${app.get("port")}`);
 });
 
