@@ -1,6 +1,6 @@
 // Importeer express uit de node_modules map
 import * as path from 'path'
-import * as dotenv from "dotenv";
+import * as dotenv from "dotenv"
 
 import { Server } from 'socket.io'
 import { createServer } from 'http'
